@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="over_table">
+    <h1 class="text-center">Welcome to the <span id="currYear"></span> NFL DraftCast</h1> <br>
+    <h4 class="text-center">Round:
+      <a class="round_number" href="{% url 'round_view' 1 %}">1</a> |
+      <a class="round_number" href="{% url 'round_view' 2 %}">2</a> |
+      <a class="round_number" href="{% url 'round_view' 3 %}">3</a> |
+      <a class="round_number" href="{% url 'round_view' 4 %}">4</a> |
+      <a class="round_number" href="{% url 'round_view' 5 %}">5</a> |
+      <a class="round_number" href="{% url 'round_view' 6 %}">6</a> |
+      <a class="round_number" href="{% url 'round_view' 7 %}">7</a> |
+      <a class="round_number" href="{% url 'index_view' %}">Live</a> | </h4><br>
+
+    <h2 class="text-center">Live Draft</h2>
+  </div>
+  {% autoescape off %}
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table table-striped">
+      <tr>
+        <td bgcolor="black">{{ draftee }}</td>
+      </tr>
+    </table>
+  {% endautoescape %}
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+  var year = new Date().getFullYear();
+  $("#currYear").text(year);
+  // Refreshes every 5 minutes
+  setTimeout(function(){
+    window.location.reload(1);
+  }, 15000);
+</script>
+{% endblock %}
